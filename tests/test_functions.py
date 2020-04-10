@@ -19,6 +19,7 @@ from onlytld import get_tld
         ("adf.yokohama.jp", "adf.yokohama.jp"),
         ("city.yokohama.jp", "yokohama.jp"),
         ("aber.dfsdf", None),
+        ("aber", None),
     ],
 )
 def test_get_tld(domain: str, tld: str) -> None:
