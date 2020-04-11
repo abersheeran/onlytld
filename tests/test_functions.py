@@ -20,6 +20,12 @@ from onlytld import get_tld
         ("city.yokohama.jp", "yokohama.jp"),
         ("aber.dfsdf", None),
         ("aber", None),
+        ("这里是.中国", "中国"),
+        ("xn--wnuw27a.xn--fiqs8s", "xn--fiqs8s"),
+        ("hello.信息", "信息"),
+        ("中国.cn", "cn"),
+        ("中国.xn--fiqs8s", "xn--fiqs8s"),
+        ("xn--12co0c3b4eva.ไทย", "xn--12co0c3b4eva.xn--o3cw4h"),
     ],
 )
 def test_get_tld(domain: str, tld: str) -> None:
