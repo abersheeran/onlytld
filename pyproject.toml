@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onlytld"
-version = "0.0.3"
+version = "0.0.4"
 description = ""
 authors = ["abersheeran <me@abersheeran.com>"]
 readme = "README.md"
