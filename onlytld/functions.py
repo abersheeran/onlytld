@@ -2,17 +2,12 @@ from typing import Optional
 
 from .data import parse_list
 
-normal, wildcard, exception = None, None, None
-
 
 def get_tld(domain: str) -> Optional[str]:
     """
     return domain's TLD or None
     """
-    global normal, wildcard, exception
-    if normal is None:
-        normal, wildcard, exception = parse_list()
-
+    normal, wildcard, exception = parse_list()
     result, is_punycode = None, False
 
     for i in range(domain.count(".") + 1):

@@ -9,13 +9,16 @@ from typing import Tuple, Set
 
 datapath = path.join(path.dirname(path.abspath(__file__)), "list.dat")
 
+normal, wildcard, exception = None, None, None
+
 
 def set_datapath(filepath: str) -> None:
     """
     custom data file path
     """
-    global datapath
+    global datapath, normal, wildcard, exception
     datapath = filepath
+    normal, wildcard, exception = None, None, None
 
 
 def fetch_list() -> None:
@@ -31,19 +34,22 @@ def parse_list() -> Tuple[Set[str], Set[str], Set[str]]:
     """
     parse rule to three kind: normal, wildcard, exception
     """
-    with open(datapath, encoding="utf8") as file:
-        txt = file.read()
-    datalist = txt.split("// ===END ICANN DOMAINS===")[0]
-    normal, wildcard, exception = set(), set(), set()
-    for line in datalist.splitlines():  # line: str
-        if line.startswith("//"):
-            continue
-        if line.startswith("*"):
-            wildcard.add(line[2:])
-        elif line.startswith("!"):
-            exception.add(line[1:])
-        else:
-            normal.add(line)
+    global normal, wildcard, exception
+
+    if normal is None:
+        with open(datapath, encoding="utf8") as file:
+            txt = file.read()
+        datalist = txt.split("// ===END ICANN DOMAINS===")[0]
+        normal, wildcard, exception = set(), set(), set()
+        for line in datalist.splitlines():  # line: str
+            if line.startswith("//"):
+                continue
+            if line.startswith("*"):
+                wildcard.add(line[2:])
+            elif line.startswith("!"):
+                exception.add(line[1:])
+            else:
+                normal.add(line)
     return normal, wildcard, exception
 
 

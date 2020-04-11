@@ -2,6 +2,8 @@
 
 Just only get TLD from domain. No other function. No non-standard library dependencies.
 
+Because it is simple, it is fast. **One million** queries only require **2.4s**.
+
 ## How to use
 
 In Python3.5+:
@@ -11,6 +13,8 @@ from onlytld import get_tld
 
 assert get_tld("chinese.cn") == "cn"
 ```
+
+**Support punycode-encoded domain names**: if a punycode-encoded domain is passed in, a punycode-encoded domain will be returned, otherwise a utf8 string will be returned.
 
 ## Update TLD List
 
