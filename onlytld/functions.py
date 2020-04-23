@@ -5,7 +5,7 @@ from .data import parse_list
 
 def get_tld(domain: str) -> Optional[str]:
     """
-    return domain's TLD or None
+    return domain's top-level-domain or None
     """
     normal, wildcard, exception = parse_list()
     result, is_punycode = None, False
@@ -28,6 +28,16 @@ def get_tld(domain: str) -> Optional[str]:
 
         if result:
             return result
+
+
+def get_sld(domain: str) -> Optional[str]:
+    """
+    return domain's secondary-level-domain or None
+    """
+    tld = get_tld(domain)
+    if tld is None or tld.count(".") == domain.count("."):
+        return None
+    return ".".join(domain.split(".")[-tld.count(".") - 2 :])
 
 
 def enpunycode(domain: str) -> str:

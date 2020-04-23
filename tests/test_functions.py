@@ -1,6 +1,6 @@
 import pytest
 
-from onlytld import get_tld
+from onlytld import get_tld, get_sld
 
 
 @pytest.mark.parametrize(
@@ -30,3 +30,21 @@ from onlytld import get_tld
 )
 def test_get_tld(domain: str, tld: str) -> None:
     assert get_tld(domain) == tld
+
+
+@pytest.mark.parametrize(
+    "domain, sld",
+    [
+        ("chinese.cn", "chinese.cn"),
+        ("hk", None),
+        ("www.a.b.c.hk", "c.hk"),
+        ("www.lijinlong.cc", "lijinlong.cc"),
+        ("ahnu.edu.cn", "ahnu.edu.cn"),
+        ("www.ck", "www.ck"),
+        ("www.moanasands.co.ck", "moanasands.co.ck"),
+        ("aber.dfsdf", None),
+        ("aber", None),
+    ],
+)
+def test_get_sld(domain: str, sld: str) -> None:
+    assert get_sld(domain) == sld
