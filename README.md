@@ -9,9 +9,10 @@ Because it is simple, it is fast. **One million** queries only require **2.4s**.
 In Python3.5+:
 
 ```python
-from onlytld import get_tld
+from onlytld import get_tld, get_sld
 
-assert get_tld("chinese.cn") == "cn"
+assert get_tld("abersheeran.com") == "com"
+assert get_sld("upload.abersheeran.com") == "abersheeran.com"
 ```
 
 **Support punycode-encoded domain names**: if a punycode-encoded domain is passed in, a punycode-encoded domain will be returned, otherwise a utf8 string will be returned.
