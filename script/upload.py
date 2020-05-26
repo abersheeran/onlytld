@@ -2,7 +2,7 @@ import os
 
 here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-package_name = 'onlytld'
+package_name = "onlytld"
 
 
 def get_version(package: str = package_name) -> str:
