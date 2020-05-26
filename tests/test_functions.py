@@ -44,6 +44,8 @@ def test_get_tld(domain: str, tld: str) -> None:
         ("www.moanasands.co.ck", "moanasands.co.ck"),
         ("aber.dfsdf", None),
         ("aber", None),
+        (".gov.cn", None),
+        (".www.gov.cn", "www.gov.cn"),
     ],
 )
 def test_get_sld(domain: str, sld: str) -> None:

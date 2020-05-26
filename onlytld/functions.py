@@ -34,6 +34,7 @@ def get_sld(domain: str) -> Optional[str]:
     """
     return domain's secondary-level-domain or None
     """
+    domain = domain.strip(".")
     tld = get_tld(domain)
     if tld is None or tld.count(".") == domain.count("."):
         return None
